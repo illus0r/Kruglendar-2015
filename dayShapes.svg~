@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="10000"
+   version="1.1"
+   width="200"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="bezier-test.svg">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1360"
+     inkscape:window-height="705"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="1.1125147"
+     inkscape:cx="-154.09084"
+     inkscape:cy="9947.4495"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4" />
+  <path
+     d="m -0.64217964,1.9820711 c 25.32870764,0 25.32870764,88.9567699 50.65741664,88.9567699 25.328709,0 25.328709,-88.9567699 50.657413,-88.9567699 -25.328704,0 -25.328704,44.4783819 -50.657413,44.4783819 -25.328709,0 -25.328709,-44.4783819 -50.65741664,-44.4783819 z"
+     id="weekday"
+     inkscape:connector-curvature="0"
+     style="fill:#0083d7;stroke:#0083d7;stroke-width:4" />
+  <path
+     id="weekend"
+     d="m 99.983541,2.0038953 c 24.999999,0 24.999999,200.0000047 49.999999,200.0000047 25,0 25,-200.0000047 50,-200.0000047 -25,0 -25,46.6102007 -50,46.6102007 -25,0 -25,-46.6102007 -49.999999,-46.6102007 z"
+     inkscape:connector-curvature="0"
+     style="fill:#0083d7;stroke:#0083d7;stroke-width:4"
+     sodipodi:nodetypes="cscsc" />
+</svg>

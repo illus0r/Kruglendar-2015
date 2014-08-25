@@ -172,7 +172,7 @@ if __name__ == '__main__':
     textGroup.add(wordGroup)
 
     #=======================================
-    # Draw a circle segments
+    # Dray a circle segments
     #=======================================
     sinus_end =   math.sin(angle+dayAngle)
     cosinus_end = math.cos(angle+dayAngle)
