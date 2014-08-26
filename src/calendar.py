@@ -103,7 +103,7 @@ class Calendar:
                     x2=str(coord2[0]), \
                     y2=str(coord2[1]), \
                     stroke=coord1[2], \
-                    stroke_width="0.03"
+                    stroke_width="0.05"
                     ))
         #print self.segmentWeek
 
