@@ -104,7 +104,7 @@ class Calendar:
                     y2=str(coord2[1]), \
                     stroke=coord1[2], \
                     stroke_width="0.03", \
-                    stroke_linecap="round"
+                    stroke-linecap="round"
                     ))
         #print self.segmentWeek
 
