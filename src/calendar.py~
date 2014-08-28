@@ -43,6 +43,7 @@ class Calendar:
             ]
         self.mounthSize = [31,28,31,30,31,30,31,31,30,31,30,31]
         self.firstWeekEnd = 3 # какой по счёту день является первой субботой года? Можно -1.
+        self.currentYear = "2015"
 
         self.segmentDay = []
         self.segmentWeek = []
@@ -54,9 +55,20 @@ class Calendar:
         self.dayShapes = dayShapes
         self.weekDayShape, self.weekEndShape = self.findDayShapes()
 
+        # заполним текстом массив для порядкового именования дней
+        self.fillDaysText()
         self.fillSegmentDay()
         self.fillSegmentWeek()
-        self.extra = [ExtraDescription()]
+        self.extra = [ExtraDescription(), ExtraYearName(self.currentYear)]
+
+    def fillDaysText(self):
+        # получим 12 массивов из номеров всех дней месяцев
+        allDays = [ range(1,ms+1) \
+                for ms in self.mounthSize ]
+        # умножим на массив названий месяцев
+        self.daysText = [ u'%d %s'%(d,m) \
+                for ad, m in zip(allDays, self.mounthNames) \
+                for d in ad]
 
     def fillSegmentDay(self):
         dayAngle = math.pi*2/365
@@ -70,11 +82,13 @@ class Calendar:
                 isWeekEnd = True
             if isWeekEnd:
                 sd = SegmentWeekEnd(copy.deepcopy(self.weekEndShape), \
+                        text = self.daysText[index], \
                         angle=angle, \
                         color=color
                         )
             else:
                 sd = SegmentWeekDay(copy.deepcopy(self.weekDayShape), \
+                        text = self.daysText[index], \
                         angle=angle, \
                         color=color
                         )
@@ -104,7 +118,7 @@ class Calendar:
                     y2=str(coord2[1]), \
                     stroke=coord1[2], \
                     stroke_width="0.03", \
-                    stroke-linecap="round"
+                    stroke_linecap="round"
                     ))
         #print self.segmentWeek
 
@@ -125,8 +139,12 @@ class Calendar:
         # 6-abs(sin(theta*6)) -- синусоиды, кривовато
         # x = (R - r)*cos(s) + r*cos((R / r - 1)*s)
         # y = (R - r)*sin(s) - r*sin((R / r - 1)*s) - работает
-        # http://goo.gl/jUPM5n -- fooplot
-        # http://www.mekanizmalar.com/hypocycloid.html -- рисовалка гипоциклоиды
+        # http://goo.gl/61uiF9 -- fooplot
+        # рисовалки гипоциклоиды
+        # http://www.mekanizmalar.com/hypocycloid.html
+        # http://www.artbylogic.com/parametricart/spirograph/spirograph.htm 
+        # playing with params
+        # r/R = 5/12
 
         # Создаём объект для рендера
         renderResult = svgfig.SVG("g") # TODO описать положение на листе
@@ -180,27 +198,32 @@ class ExtraDescription:
         return g
 
 class ExtraYearName:
-    def __init__(self):
+    def __init__(self, currentYear):
+        self.currentYear = currentYear
         # http://www.kernjs.com/
         pass
+    def render(self):
+        return svgfig.SVG("text",self.currentYear,x="2.1" ,y="0.2",style="font-size:0.5; stroke-width:0; fill:%s; text-anchor:start; letter-spacing:0.1;")
 
 # Абстрактный класс сегмента дня. Наследуется классами SegmentWeekDay, SegmentWeekEnd
 class SegmentDay:
     def __init__(self, \
             shape, \
-            dateIndex=0, \
-            mounthIndex=0, \
-            holidayIndex=0, \
+            text=u'1 января', \
+            #dateIndex=0, \
+            #mounthIndex=0, \
+            #holidayIndex=0, \
             angle=0.0, \
             language="ru", \
             color="#ff0000" \
             ):
-        self.dateName = str(dateIndex+1)
-        self.mounthName = "TODO"
-        self.holidayName = ""
+        #self.dateName = str(dateIndex+1)
+        #self.mounthName = "TODO"
+        #self.holidayName = ""
         self.angle = angle
         self.color = color
         self.shape = shape
+        self.text = text
 
         # поменяем атрибуты формы дня
         self.shape.attr['fill'] = self.color
@@ -212,14 +235,17 @@ class SegmentDay:
         self.shape.attr['transform'] = "rotate(-90) scale(0.0068) translate(%d)" \
                 %(dayShapeOffset)
 
+
 class SegmentWeekDay(SegmentDay):
     def render(self):
         #g1 = svgfig.SVG("g", \
                 #self.shape,
                 #transform="translate(0 150)" \
                 #)
+        #print repr(svgfig.SVG("text",'hello',x=0,y=0))
         g2 = svgfig.SVG("g", \
-                self.shape,
+                self.shape, \
+                svgfig.SVG("text",self.text,x="0.9" ,y="0.2",style="font-size:0.5; stroke-width:0; fill:black; text-anchor:start; letter-spacing:0.1;"), \
                 transform="rotate(%f 0 0) translate(40)" \
                 %(math.degrees(self.angle)) \
                 )
@@ -233,6 +259,8 @@ class SegmentWeekEnd(SegmentDay):
                 #)
         g2 = svgfig.SVG("g", \
                 self.shape,
+                svgfig.SVG("text",self.text,x="2.1" ,y="0.2",style="font-size:0.5; stroke-width:0; fill:%s; text-anchor:start; letter-spacing:0.1;" \
+                %(self.color)), \
                 transform="rotate(%f 0 0) translate(40)" \
                 %(math.degrees(self.angle)) \
                 )
