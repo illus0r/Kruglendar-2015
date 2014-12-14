@@ -129,6 +129,7 @@ class Calendar:
         print daysInPreviousMonthes
 
         R = 2*0.3684*self.canvasSize[0]/2
+        R = R*0.999 # скейлим, так красивее
         weekHypocycloidCoords = []
 
         #print  zip(self.monthSize, daysInPreviousMonthes)[:2]
@@ -159,7 +160,7 @@ class Calendar:
                     x2=str(coord2[0]), \
                     y2=str(coord2[1]), \
                     stroke=coord1[2], \
-                    stroke_width="0.03", \
+                    stroke_width="0.566", \
                     stroke_linecap="round"
                     ))
 
@@ -224,13 +225,13 @@ class Calendar:
         for segmentDay in self.segmentDay:
             renderResult.append(segmentDay.render())
         # Рендерим недели
-            #segmentWeeks = svgfig.SVG("g")
-            #segmentWeeks.extend(self.segmentWeek)
-            #renderResult.append(segmentWeeks)
+        #segmentWeeks = svgfig.SVG("g")
+        #segmentWeeks.extend(self.segmentWeek)
+        #renderResult.append(segmentWeeks)
         # Рендерим месяца
-            segmentMonthes = svgfig.SVG("g")
-            segmentMonthes.extend(self.segmentMonth)
-            renderResult.append(segmentMonthes)
+        segmentMonthes = svgfig.SVG("g")
+        segmentMonthes.extend(self.segmentMonth)
+        renderResult.append(segmentMonthes)
         # Рендерим дополнительные данные
         for extraItem in self.extra:
             renderResult.append(extraItem.render())
@@ -270,9 +271,10 @@ class ExtraDescription:
     def __init__(self):
         pass
     def render(self):
-        s = svgfig.SVG("rect", x=10, y=10, width=6, height=6, fill="red")
-        s2= svgfig.SVG("rect", x=30, y=30, width=6, height=6, fill="blue")
-        g = svgfig.SVG("g", s, s2, fill_opacity="50%")
+        #s = svgfig.SVG("rect", x=10, y=10, width=6, height=6, fill="red")
+        #s2= svgfig.SVG("rect", x=30, y=30, width=6, height=6, fill="blue")
+        #g = svgfig.SVG("g", s, s2, fill_opacity="50%")
+        g = svgfig.SVG("g", fill_opacity="50%")
         return g
 
 class ExtraYearName:
@@ -309,6 +311,7 @@ class SegmentDay:
         # поменяем атрибуты формы дня
         self.shape.attr['fill'] = self.color
         self.shape.attr['stroke'] = self.color
+        self.shape.attr['stroke-width'] = 0.
         # В файле daySapes.svg линии не отцентрованы. Отцентруем при помощи translate
         #print self.__class__.__name__
         dayShapeOffset = -150 if self.__class__.__name__ == "SegmentWeekEnd" else -50

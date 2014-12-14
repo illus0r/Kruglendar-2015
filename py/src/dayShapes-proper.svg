@@ -12,7 +12,7 @@
    width="200"
    id="svg2"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="bezier-test.svg">
+   sodipodi:docname="dayShapes-proper.svg">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -33,14 +33,14 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1360"
-     inkscape:window-height="705"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="1.1125147"
-     inkscape:cx="-154.09084"
+     inkscape:cx="-308.24611"
      inkscape:cy="9947.4495"
-     inkscape:window-x="-8"
+     inkscape:window-x="1358"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
@@ -49,9 +49,15 @@
   <path
      d="m -0.64217964,1.9820711 c 25.32870764,0 25.32870764,88.9567699 50.65741664,88.9567699 25.328709,0 25.328709,-88.9567699 50.657413,-88.9567699 -25.328704,0 -25.328704,44.4783819 -50.657413,44.4783819 -25.328709,0 -25.328709,-44.4783819 -50.65741664,-44.4783819 z"
      id="weekday"
-     fill="#0083d7" stroke="#0083d7" stroke-width="4" />
+     fill="#0083d7"
+     stroke="#0083d7"
+     stroke-width="4"
+     style="stroke-width:0.39375;stroke-miterlimit:4;stroke-dasharray:none" />
   <path
      id="weekend"
      d="m 99.983541,2.0038953 c 24.999999,0 24.999999,200.0000047 49.999999,200.0000047 25,0 25,-200.0000047 50,-200.0000047 -25,0 -25,46.6102007 -50,46.6102007 -25,0 -25,-46.6102007 -49.999999,-46.6102007 z"
-     fill="#0083d7" stroke="#0083d7" stroke-width="4" />
+     fill="#0083d7"
+     stroke="#0083d7"
+     stroke-width="4"
+     style="stroke-width:0.39375;stroke-miterlimit:4;stroke-dasharray:none" />
 </svg>
