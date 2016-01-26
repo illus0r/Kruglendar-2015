@@ -51,9 +51,9 @@ class Calendar:
 
 
 
-        self.monthSize = [31,28,31,30,31,30,31,31,30,31,30,31]
-        self.firstWeekEnd = 3 # какой по счёту день является первой субботой года? Можно -1.
-        self.currentYear = "2015"
+        self.monthSize = [31,29,31,30,31,30,31,31,30,31,30,31]
+        self.firstWeekEnd = 2 # какой по счёту день является первой субботой года? Можно -1.
+        self.currentYear = "2016"
 
         self.segmentDay = []
         self.segmentWeek = []
@@ -83,7 +83,7 @@ class Calendar:
                 for d in ad]
 
     def fillSegmentDay(self):
-        dayAngle = math.pi*2/365
+        dayAngle = math.pi*2/366
         # начнём со сдвигом на полдня, закончим также. Так лучше.
         for index, angle in enumerate(frange(self.angleShift+dayAngle/2, \
                                                 self.angleShift+math.pi*2+dayAngle/2, \
@@ -136,14 +136,14 @@ class Calendar:
         for ms, pd in zip(self.monthSize, daysInPreviousMonthes):
             #print ms, pd
             # Создадим список координат одной гипоциклоиды
-            r = R*ms/365
+            r = R*ms/366
             # Вычислим радиус, который должна проехать внутренняя окружность от начала координат
             # (правая точка календаря)
-            loops = (pd+(365*self.angleShift/(2*math.pi)))/ms
+            loops = (pd+(366*self.angleShift/(2*math.pi)))/ms
             da = loops*(2*math.pi) # сдвиг гипоциклоиды вперёд
             #print math.pi*2*(pd/365), math.pi*2*((pd+ms)/365)
-            for angle in frange(self.angleShift+math.pi*2*(pd/365.0), \
-                                self.angleShift+math.pi*2*((pd+ms)/365.0), \
+            for angle in frange(self.angleShift+math.pi*2*(pd/366.0), \
+                                self.angleShift+math.pi*2*((pd+ms)/366.0), \
                                 0.02):
                 x = (R - r)*math.cos(angle) + \
                         r*math.cos((R / r - 1)*angle - da)
@@ -169,7 +169,7 @@ class Calendar:
             #self.segmentWeek
         # Создадим список координат гипоциклоиды
         R = 2*0.3684*self.canvasSize[0]/2
-        r = R*7/365
+        r = R*7/366
         da = (self.firstWeekEnd+1)*(2*math.pi/7) # сдвиг гипоциклоиды вперёд
         weekHypocycloidCoords = []
         for angle in frange(self.angleShift, \
